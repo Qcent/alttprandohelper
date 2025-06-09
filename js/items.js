@@ -1,49 +1,12 @@
 (function(window) {
     'use strict';
 
-    var items = {
-        has_melee: function() { return this.sword || this.hammer; },
-        has_bow: function() { return this.bow > 1; },
-        has_melee_bow: function() { return this.has_melee() || this.has_bow(); },
-        has_cane: function() { return this.somaria || this.byrna; },
-        has_rod: function() { return this.firerod || this.icerod; },
+    var query = uri_query(),
+        sword = query.mode === 'open' ? 0 : 1;
 
-        can_reach_outcast: function() {
-            return this.moonpearl && (
-                this.glove === 2 || this.glove && this.hammer ||
-                this.agahnim && this.hookshot && (this.hammer || this.glove || this.flippers));
-        },
-
-        medallion_check: function(medallion) {
-            if (!this.sword || !this.bombos && !this.ether && !this.quake) return 'unavailable';
-            if (medallion === 1 && !this.bombos ||
-                medallion === 2 && !this.ether ||
-                medallion === 3 && !this.quake) return 'unavailable';
-            if (medallion === 0 && !(this.bombos && this.ether && this.quake)) return 'possible';
-        },
-
-        inc: counters(1, {
-            tunic: { min: 1, max: 3 },
-            sword: { max: 4 },
-            shield: { max: 3 },
-            bottle: { max: 4 },
-            bow: { max: 3 },
-            boomerang: { max: 3 },
-            glove: { max: 2 }
-        })
-    };
-
-    function counters(delta, limits) {
-        return function(item) {
-            var max = limits[item].max,
-                min = limits[item].min;
-            return counter(this[item], delta, max, min);
-        };
-    };
-
-    var open_items = create(items, {
+    window.items = {
         tunic: 1,
-        sword: 0,
+        sword: sword,
         shield: 0,
         moonpearl: false,
 
@@ -75,12 +38,72 @@
         glove: 0,
         flippers: false,
         flute: false,
-        agahnim: false
-    });
+        agahnim: false,
 
-    var standard_items = update(open_items, { sword: { $set: 1 } });
+        boss0: false,
+        boss1: false,
+        boss2: false,
+        boss3: false,
+        boss4: false,
+        boss5: false,
+        boss6: false,
+        boss7: false,
+        boss8: false,
+        boss9: false,
 
-    window.item_model = function(mode) {
-        return { items: { standard: standard_items, open: open_items }[mode] };
+        chest0: 3,
+        chest1: 2,
+        chest2: 2,
+        chest3: 5,
+        chest4: 6,
+        chest5: 2,
+        chest6: 4,
+        chest7: 3,
+        chest8: 2,
+        chest9: 5,
+
+        inc: limit(1, {
+            tunic: { min: 1, max: 3 },
+            sword: { max: 4 },
+            shield: { max: 3 },
+            bottle: { max: 4 },
+            bow: { max: 3 },
+            boomerang: { max: 3 },
+            glove: { max: 2 },
+            chest0: { max: 3 },
+            chest1: { max: 2 },
+            chest2: { max: 2 },
+            chest3: { max: 5 },
+            chest4: { max: 6 },
+            chest5: { max: 2 },
+            chest6: { max: 4 },
+            chest7: { max: 3 },
+            chest8: { max: 2 },
+            chest9: { max: 5 }
+        }),
+        dec: limit(-1, {
+            chest0: { max: 3 },
+            chest1: { max: 2 },
+            chest2: { max: 2 },
+            chest3: { max: 5 },
+            chest4: { max: 6 },
+            chest5: { max: 2 },
+            chest6: { max: 4 },
+            chest7: { max: 3 },
+            chest8: { max: 2 },
+            chest9: { max: 5 }
+        })
     };
+
+    function limit(delta, limits) {
+        return function(item) {
+            var value = items[item],
+                max = limits[item].max,
+                min = limits[item].min || 0;
+            value += delta;
+            if (value > max) value = min;
+            if (value < min) value = max;
+            return items[item] = value;
+        };
+    }
 }(window));
