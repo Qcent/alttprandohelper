@@ -194,7 +194,7 @@ You can press the following two-letter key sequences to toggle items in the trac
 | Bottle         | `B T`                   |
 | Cane of Somaria| `C S`, `S O`            |
 | Cane of Byrna  | `C B`, `B Y`            |
-| Magic Cape     | `C A`                   |
+| Magic Cape     | `C A`, `M C`            |
 | Magic Mirror   | `M I`, `M M`            |
 | Boots          | `B O`                   |
 | Gloves         | `G L`                   |

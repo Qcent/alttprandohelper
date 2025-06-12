@@ -123,7 +123,7 @@ const hKeyItemSequences = {
     bottle: [['b', 't']],
     somaria: [['c', 's'], ['s', 'o']],
     byrna: [['c', 'b'], ['b', 'y']],
-    cape: [['c', 'a']],
+    cape: [['c', 'a'], ['m', 'c']],
     mirror: [['m', 'i'], ['m', 'm']],
     boots: [['b', 'o']],
     glove: [['g', 'l']],

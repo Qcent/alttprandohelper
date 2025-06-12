@@ -6,6 +6,23 @@
     window.medallions = [0, 0];
     window.mode = query.mode;
     window.map_enabled = query.map;
+    window.sprite = query.sprite;
+
+    // Activate any custom sprite selection
+    function updateLinkSprite(sprite) {
+        sprite = sprite.replace(/-/g, "_");
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .tunic.active-1 { background-image: url(images/sprites/${sprite}/tunic1.png) !important; }
+            .tunic.active-2 { background-image: url(images/sprites/${sprite}/tunic2.png) !important; }
+            .tunic.active-3 { background-image: url(images/sprites/${sprite}/tunic3.png) !important; }
+            .tunic.active-1.bunny { background-image: url(images/sprites/${sprite}/tunicbunny1.png) !important; }
+            .tunic.active-2.bunny { background-image: url(images/sprites/${sprite}/tunicbunny2.png) !important; }
+            .tunic.active-3.bunny { background-image: url(images/sprites/${sprite}/tunicbunny3.png) !important; }
+        `;
+        document.head.appendChild(style);
+    }
+    if(window.sprite) updateLinkSprite(sprite);
 
     // Event of clicking on the item tracker
     window.toggle = function (label, dir = 1) {
@@ -141,6 +158,7 @@
             if (n === 1) {
                 chests[4].is_opened = !chests[4].is_opened;
                 toggle_chest(4);
+                chests[4].caption = chests[4].caption.replace(/\{medallion\d+\}/, '{medallion' + medallions[n] + '}');
             }
             // Change the mouseover text on the map
             dungeons[8 + n].caption = dungeons[8 + n].caption.replace(/\{medallion\d+\}/, '{medallion' + medallions[n] + '}');
@@ -242,28 +260,67 @@
         };
     }
 
-    function applyResponsiveStyles() {
+    function applyResponsiveStyles() {// in conjunction with css media queries
         const caption = document.getElementById('caption');
         const tracker = document.getElementById('tracker');
         const lightmap = document.getElementById('lightmap');
         const darkmap = document.getElementById('darkmap');
         const mapswitcher = document.getElementById('mapswitcher');
 
+
+        const appElement = document.getElementById('app');
+        let style = getComputedStyle(appElement);
+        let appHeight = parseInt(style.height, 10);
+
+        if (appHeight < 510 && window.innerHeight < 510) {
+            let scale = 1;
+
+            if (window.innerHeight >= 503) {
+                scale = 1;         
+            } else if (window.innerHeight >= 472) {
+                scale = 0.95;  
+            } else if (window.innerHeight >= 425) {
+                scale = 0.85;
+            } else if (window.innerHeight >= 373) {
+                scale = 0.75;
+            } else if (window.innerHeight >= 330) {
+                scale = 0.65;
+            } else {
+                scale = 0.55;
+            }
+            appElement.style.transform = scale === 1 ? '' : `scale(${scale})`;
+            appElement.style.transformOrigin = 'top left';
+        }else
+
         if (window.innerWidth >= 1370) {
+             if(map_enabled && (lightmap.style.display == 'none' || darkmap.style.display == 'none')){
+                toggle_map_view(mapswitcher);
+                chestOut();
+                mapswitcher.style.display = 'block';
+                mapswitcher.style.left = "calc(50vw + 195px)";
+            }
+        }
+        else if (window.innerWidth >= 940/*1370*/) {
             caption.style.order = 3;
             tracker.style.order = 0;
             lightmap.style.order = 1;
             darkmap.style.order = 2;
-            mapswitcher.style.display = 'none';
+            if(map_enabled && (lightmap.style.display == 'none' || darkmap.style.display == 'none')){
+                mapswitcher.style.display = 'block';
+                mapswitcher.style.left = "calc(50vw + 230px)";
+            }
+            else
+              mapswitcher.style.display = 'none';
             mapswitcher.dataset.current = "1";
-            toggle_map_view(mapswitcher);
-            chestOut();
-        } else {
+        } else if(window.innerWidth >= 472) {
             caption.style.order = 1;
             tracker.style.order = 0;
             lightmap.style.order = 2;
             darkmap.style.order = 3;
             mapswitcher.style.display = 'block';
+            mapswitcher.style.left = "calc(50vw + 195px)";
+        }else{
+            mapswitcher.style.left = '';
         }
     }
 

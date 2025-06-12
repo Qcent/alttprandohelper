@@ -1,20 +1,45 @@
+:root {
+  --min-width: 464px;
+}
+
 body {
   margin: 0px;
   background-color: black;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
+
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE/Edge */
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 .row:before,
-.row:after { content: " "; display: table; }
-.row:after { clear: both; }
-.cell { position: relative; float: left; }
+.row:after {
+  content: " ";
+  display: table;
+}
+
+.row:after {
+  clear: both;
+}
+
+.cell {
+  position: relative;
+  float: left;
+}
 
 #app {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 0.3rem;
   padding: 1rem 0.3rem;
@@ -23,15 +48,35 @@ body {
   min-height: 448px;
   max-width: calc((438px *3) + 6rem);
 }
-#app.mapless { width: 460px; }
+
+#app.mapless {
+  width: 460px;
+}
 
 #tracker .item,
 #tracker .boss,
-#tracker [id^="chest"] { width: 64px; height: 64px; }
+#tracker [id^="chest"] {
+  width: 64px;
+  height: 64px;
+}
 
-#tracker .tunic { width: 128px; height: 128px; }
-#tracker .sword { position: absolute; top: 0; right: 0; }
-#tracker .shield { position: absolute; bottom: 0; left: 0; }
+#tracker .tunic {
+  width: 128px;
+  height: 128px;
+}
+
+#tracker .sword {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#tracker .shield {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
 #tracker .moonpearl {
   width: 48px;
   height: 48px;
@@ -41,9 +86,14 @@ body {
 }
 
 #tracker .item,
-#tracker .boss { opacity: .25; }
+#tracker .boss {
+  opacity: .25;
+}
+
 #tracker .item[class*="active"],
-#tracker .boss.defeated { opacity: 1; }
+#tracker .boss.defeated {
+  opacity: 1;
+}
 
 [class*="prize-"] {
   width: 32px;
@@ -52,6 +102,7 @@ body {
   bottom: 0;
   right: 0;
 }
+
 #tracker [class*="medallion-"] {
   width: 32px;
   height: 32px;
@@ -59,10 +110,10 @@ body {
   bottom: 0;
 }
 
-#mapswitcher{
+#mapswitcher {
   position: absolute;
   top: 470px;
-  left: calc(50vw + 195px);
+  /*left: calc(50vw + 195px);*/
   width: 22px;
   height: 22px;
   background-image: url(images/items/map.png);
@@ -74,11 +125,13 @@ body {
   margin: 0.2rem;
   background-image: url(images/overlay/maplight.png);
 }
+
 #darkmap {
   margin: 0.2rem;
   background-image: url(images/overlay/mapdark.png);
 }
-.map{
+
+.map {
   width: 438px;
   height: 442px;
   margin: 0px;
@@ -106,7 +159,10 @@ body {
   z-index: 2;
 }
 
-#bossMapAgahnim { background-color: transparent; }
+#bossMapAgahnim {
+  background-color: transparent;
+}
+
 .castle {
   width: 36px;
   height: 36px;
@@ -127,16 +183,35 @@ body {
 
 .chest,
 .castle,
-.dungeon { background-image: url(images/overlay/poi.png); }
+.dungeon {
+  background-image: url(images/overlay/poi.png);
+}
+
 .chest.highlight,
 .castle.highlight,
-.dungeon.highlight { background-image: url(images/overlay/highlighted.png); }
+.dungeon.highlight {
+  background-image: url(images/overlay/highlighted.png);
+}
 
-.unavailable { background-color: red; }
-.available { background-color: lime; }
-.possible { background-color: yellow; }
-.dark { background-color: blue; }
-.opened { background-color: #7f7f7f; }
+.unavailable {
+  background-color: red;
+}
+
+.available {
+  background-color: lime;
+}
+
+.possible {
+  background-color: yellow;
+}
+
+.dark {
+  background-color: blue;
+}
+
+.opened {
+  background-color: #7f7f7f;
+}
 
 #caption {
   flex-basis: 100%;
@@ -155,182 +230,765 @@ body {
   vertical-align: text-bottom;
 }
 
-.smallkey { background-image: url(images/items/smallkey.png); }
-.map { background-image: url(images/items/map.png); }
-.compass { background-image: url(images/items/compass.png); }
-.bigkey { background-image: url(images/items/bigkey.png); }
-.rupeegreen { background-image: url(images/items/rupeegreen.png); }
+.smallkey {
+  background-image: url(images/items/smallkey.png);
+}
 
-.tunic.active-1 { background-image: url(images/items/tunic1.png); }
-.tunic.active-2 { background-image: url(images/items/tunic2.png); }
-.tunic.active-3 { background-image: url(images/items/tunic3.png); }
-.tunic.active-1.bunny { background-image: url(images/items/tunicbunny1.png); }
-.tunic.active-2.bunny { background-image: url(images/items/tunicbunny2.png); }
-.tunic.active-3.bunny { background-image: url(images/items/tunicbunny3.png); }
-.sword.active-1 { background-image: url(images/items/sword1.png); }
-.sword.active-2 { background-image: url(images/items/sword2.png); }
-.sword.active-3 { background-image: url(images/items/sword3.png); }
-.sword.active-4 { background-image: url(images/items/sword4.png); }
-.shield.active-1 { background-image: url(images/items/shield1.png); }
-.shield.active-2 { background-image: url(images/items/shield2.png); }
-.shield.active-3 { background-image: url(images/items/shield3.png); }
-.moonpearl { background-image: url(images/items/moonpearl.png); }
-.bow { background-image: url(images/items/bow0.png); }
-.bow.active-1 { background-image: url(images/items/bow1.png); }
-.bow.active-2 { background-image: url(images/items/bow2.png); }
-.bow.active-3 { background-image: url(images/items/bow3.png); }
-.boomerang { background-image: url(images/items/boomerang1.png); }
-.boomerang.active-2 { background-image: url(images/items/boomerang2.png); }
-.boomerang.active-3 { background-image: url(images/items/boomerang3.png); }
-.hookshot { background-image: url(images/items/hookshot.png); }
-.mushroom { background-image: url(images/items/mushroom.png); }
-.powder { background-image: url(images/items/powder.png); }
-.firerod { background-image: url(images/items/firerod.png); }
-.icerod { background-image: url(images/items/icerod.png); }
-.bombos { background-image: url(images/items/bombos.png); }
-.ether { background-image: url(images/items/ether.png); }
-.quake { background-image: url(images/items/quake.png); }
-.lantern { background-image: url(images/items/lantern.png); }
-.hammer { background-image: url(images/items/hammer.png); }
-.shovel { background-image: url(images/items/shovel.png); }
-.net { background-image: url(images/items/net.png); }
-.book { background-image: url(images/items/book.png); }
-.bottle { background-image: url(images/items/bottle0.png); }
-.bottle.active-1 { background-image: url(images/items/bottle1.png); }
-.bottle.active-2 { background-image: url(images/items/bottle2.png); }
-.bottle.active-3 { background-image: url(images/items/bottle3.png); }
-.bottle.active-4 { background-image: url(images/items/bottle4.png); }
-.somaria { background-image: url(images/items/somaria.png); }
-.byrna { background-image: url(images/items/byrna.png); }
-.cape { background-image: url(images/items/cape.png); }
-.mirror { background-image: url(images/items/mirror.png); }
-.boots { background-image: url(images/items/boots.png); }
-.glove { background-image: url(images/items/glove1.png); }
-.glove.active-2 { background-image: url(images/items/glove2.png); }
-.flippers { background-image: url(images/items/flippers.png); }
-.flute { background-image: url(images/items/flute.png); }
-.agahnim, #bossMapAgahnim { background-image:url(images/dungeons/agahnim0.png); }
-.agahnim.active { background-image:url(images/dungeons/agahnim1.png); }
-.boss0, #bossMap0 { background-image: url(images/dungeons/boss0.png); }
-.boss1, #bossMap1 { background-image: url(images/dungeons/boss1.png); }
-.boss2, #bossMap2 { background-image: url(images/dungeons/boss2.png); }
-.boss3, #bossMap3 { background-image: url(images/dungeons/boss3.png); }
-.boss4, #bossMap4 { background-image: url(images/dungeons/boss4.png); }
-.boss5, #bossMap5 { background-image: url(images/dungeons/boss5.png); }
-.boss6, #bossMap6 { background-image: url(images/dungeons/boss6.png); }
-.boss7, #bossMap7 { background-image: url(images/dungeons/boss7.png); }
-.boss8, #bossMap8 { background-image: url(images/dungeons/boss8.png); }
-.boss9, #bossMap9 { background-image: url(images/dungeons/boss9.png); }
-.prize-0 { background-image: url(images/dungeons/prize0.png); }
-.prize-1 { background-image: url(images/dungeons/prize1.png); }
-.prize-2 { background-image: url(images/dungeons/prize2.png); }
-.prize-3 { background-image: url(images/dungeons/prize3.png); }
-.prize-4 { background-image: url(images/dungeons/prize4.png); }
-.medallion-0 { background-image: url(images/dungeons/medallion0.png); }
-.medallion-1 { background-image: url(images/dungeons/medallion1.png); }
-.medallion-2 { background-image: url(images/dungeons/medallion2.png); }
-.medallion-3 { background-image: url(images/dungeons/medallion3.png); }
-.chest-0 { background-image: url(images/dungeons/chest0.png); }
-.chest-1 { background-image: url(images/dungeons/chest1.png); }
-.chest-2 { background-image: url(images/dungeons/chest2.png); }
-.chest-3 { background-image: url(images/dungeons/chest3.png); }
-.chest-4 { background-image: url(images/dungeons/chest4.png); }
-.chest-5 { background-image: url(images/dungeons/chest5.png); }
-.chest-6 { background-image: url(images/dungeons/chest6.png); }
+.map {
+  background-image: url(images/items/map.png);
+}
 
-.bomb { background-image: url(images/overlay/bomb.png); }
-.crystal { background-image: url(images/overlay/crystal.png); }
-.redcrystal { background-image: url(images/overlay/redcrystal.png); }
-.pendant-0 { background-image: url(images/overlay/pendant0.png); }
-.pendant-1 { background-image: url(images/overlay/pendant1.png); }
-.pendant-2 { background-image: url(images/overlay/pendant2.png); }
+.compass {
+  background-image: url(images/items/compass.png);
+}
 
-#bossMap0, #dungeon0 { left: 93.6%; top: 38.8%; }
-#bossMap1, #dungeon1 { left: 7.6%;  top: 78.4%; }
-#bossMap2, #dungeon2 { left: 62.3%; top: 5.5%; }
-#bossMap3, #dungeon3 { left: 93.5%; top: 40.0%; }
-#bossMap4, #dungeon4 { left: 46.5%; top: 91.0%; }
-#bossMap5, #dungeon5 { left: 6.7%;  top: 5.4%; }
-#bossMap6, #dungeon6 { left: 12.3%; top: 47.9%; }
-#bossMap7, #dungeon7 { left: 79.1%; top: 85.8%; }
-#bossMap8, #dungeon8 { left: 11.2%; top: 82.9%; }
-#bossMap9, #dungeon9 { left: 93.3%; top: 7.0%; }
+.bigkey {
+  background-image: url(images/items/bigkey.png);
+}
 
-#bossMapAgahnim, #castle { left: 50.2%; top: 52.6%; }
+.rupeegreen {
+  background-image: url(images/items/rupeegreen.png);
+}
 
-#chestMap0 { left: 61.9%; top: 29.6%; }
-#chestMap1 { left: 47.0%; top: 93.4%; }
-#chestMap2 { left: 55.0%; top: 67.9%; }
-#chestMap3 { left: 80.2%; top: 9.3%; }
-#chestMap4 { left: 85.6%; top: 9.3%; }
-#chestMap5 { left: 16.3%; top: 57.8%; }
-#chestMap6 { left: 8.8%;  top: 54.2%; }
-#chestMap7 { left: 10.3%; top: 57.8%; }
-#chestMap8 { left: 21.2%; top: 47.9%; }
-#chestMap9 { left: 20.1%; top: 82.6%; }
-#chestMap10 { left: 3.0%; top: 79.5%; }
-#chestMap11 { left: 85.3%; top: 14.7%; }
-#chestMap12 { left: 81.8%; top: 41.4%; }
-#chestMap13 { left: 56.7%; top: 14.9%; }
-#chestMap14 { left: 3.4%;  top: 41.0%; }
-#chestMap15 { left: 12.9%; top: 41.0%; }
-#chestMap16 { left: 59.5%; top: 77.1%; }
-#chestMap17 { left: 83.2%; top: 17.1%; }
-#chestMap18 { left: 39.2%; top: 29.3%; }
-#chestMap19 { left: 65.5%; top: 93.4%; }
-#chestMap20 { left: 89.9%; top: 76.9%; }
-#chestMap21 { left: 82.7%; top: 8.6%; }
-#chestMap22 { left: 82.7%; top: 3.4%; }
-#chestMap23 { left: 3.7%;  top: 46.4%; }
-#chestMap24 { left: 9.0%;  top: 46.8%; }
-#chestMap25 { left: 81.8%; top: 46.7%; }
-#chestMap26 { left: 30.5%; top: 68.6%; }
-#chestMap27 { left: 15.7%; top: 52.1%; }
-#chestMap28 { left: 29.9%; top: 52.2%; }
-#chestMap29 { left: 71.1%; top: 69.7%; }
-#chestMap30 { left: 42.2%; top: 3.0%; }
-#chestMap31 { left: 22.1%; top: 92.2%; }
-#chestMap32 { left: 91.5%; top: 17.2%; }
-#chestMap33 { left: 96.4%; top: 12.1%; }
-#chestMap34 { left: 41.8%; top: 20.4%; }
-#chestMap35 { left: 82.1%; top: 32.5%; }
-#chestMap36 { left: 18.9%; top: 13.0%; }
-#chestMap37 { left: 30.3%; top: 7.6%; }
-#chestMap38 { left: 48.8%; top: 14.8%; }
-#chestMap39 { left: 28.3%; top: 84.1%; }
-#chestMap40 { left: 56.5%; top: 27.0%; }
-#chestMap41 { left: 17.7%; top: 77.3%; }
-#chestMap42 { left: 31.1%; top: 60.1%; }
-#chestMap43 { left: 15.5%; top: 65.9%; }
-#chestMap44 { left: 12.5%; top: 8.6%; }
-#chestMap45 { left: 50.9%; top: 8.5%; }
-#chestMap46 { left: 80.8%; top: 3.0%; }
-#chestMap47 { left: 3.6%;  top: 69.8%; }
-#chestMap48 { left: 3.0%;  top: 91.0%; }
-#chestMap49 { left: 72.5%; top: 82.9%; }
-#chestMap50 { left: 31.7%; top: 15.2%; }
-#chestMap51 { left: 57.5%; top: 43.5%; }
-#chestMap52 { left: 5.3%;  top: 69.2%; }
-#chestMap53 { left: 95.8%; top: 17.3%; }
-#chestMap54 { left: 29.0%; top: 66.2%; }
-#chestMap55 { left: 53.8%; top: 32.4%; }
-#chestMap56 { left: 59.9%; top: 41.8%; }
-#chestMap57 { left: 50.2%; top: 44.1%; }
-#chestMap58 { left: 46.2%; top: 28.0%; }
-#chestMap59 { left: 32.1%; top: 58.0%; }
-#chestMap60 { left: 30.5%; top: 51.8%; }
-#chestMap61 { left: 46.5%; top: 48.5%; }
-#chestMap62 { left: 5.0%;  top: 3.2%; }
-#chestMap63 { left: 51.4%; top: 38.2%; }
-#chestMap64 { left: 90.2%; top: 14.7%; }
+.tunic.active-1 {
+  background-image: url(images/items/tunic1.png);
+}
+
+.tunic.active-2 {
+  background-image: url(images/items/tunic2.png);
+}
+
+.tunic.active-3 {
+  background-image: url(images/items/tunic3.png);
+}
+
+.tunic.active-1.bunny {
+  background-image: url(images/items/tunicbunny1.png);
+}
+
+.tunic.active-2.bunny {
+  background-image: url(images/items/tunicbunny2.png);
+}
+
+.tunic.active-3.bunny {
+  background-image: url(images/items/tunicbunny3.png);
+}
+
+.sword.active-1 {
+  background-image: url(images/items/sword1.png);
+}
+
+.sword.active-2 {
+  background-image: url(images/items/sword2.png);
+}
+
+.sword.active-3 {
+  background-image: url(images/items/sword3.png);
+}
+
+.sword.active-4 {
+  background-image: url(images/items/sword4.png);
+}
+
+.shield.active-1 {
+  background-image: url(images/items/shield1.png);
+}
+
+.shield.active-2 {
+  background-image: url(images/items/shield2.png);
+}
+
+.shield.active-3 {
+  background-image: url(images/items/shield3.png);
+}
+
+.moonpearl {
+  background-image: url(images/items/moonpearl.png);
+}
+
+.bow {
+  background-image: url(images/items/bow0.png);
+}
+
+.bow.active-1 {
+  background-image: url(images/items/bow1.png);
+}
+
+.bow.active-2 {
+  background-image: url(images/items/bow2.png);
+}
+
+.bow.active-3 {
+  background-image: url(images/items/bow3.png);
+}
+
+.boomerang {
+  background-image: url(images/items/boomerang1.png);
+}
+
+.boomerang.active-2 {
+  background-image: url(images/items/boomerang2.png);
+}
+
+.boomerang.active-3 {
+  background-image: url(images/items/boomerang3.png);
+}
+
+.hookshot {
+  background-image: url(images/items/hookshot.png);
+}
+
+.mushroom {
+  background-image: url(images/items/mushroom.png);
+}
+
+.powder {
+  background-image: url(images/items/powder.png);
+}
+
+.firerod {
+  background-image: url(images/items/firerod.png);
+}
+
+.icerod {
+  background-image: url(images/items/icerod.png);
+}
+
+.bombos {
+  background-image: url(images/items/bombos.png);
+}
+
+.ether {
+  background-image: url(images/items/ether.png);
+}
+
+.quake {
+  background-image: url(images/items/quake.png);
+}
+
+.lantern {
+  background-image: url(images/items/lantern.png);
+}
+
+.hammer {
+  background-image: url(images/items/hammer.png);
+}
+
+.shovel {
+  background-image: url(images/items/shovel.png);
+}
+
+.net {
+  background-image: url(images/items/net.png);
+}
+
+.book {
+  background-image: url(images/items/book.png);
+}
+
+.bottle {
+  background-image: url(images/items/bottle0.png);
+}
+
+.bottle.active-1 {
+  background-image: url(images/items/bottle1.png);
+}
+
+.bottle.active-2 {
+  background-image: url(images/items/bottle2.png);
+}
+
+.bottle.active-3 {
+  background-image: url(images/items/bottle3.png);
+}
+
+.bottle.active-4 {
+  background-image: url(images/items/bottle4.png);
+}
+
+.somaria {
+  background-image: url(images/items/somaria.png);
+}
+
+.byrna {
+  background-image: url(images/items/byrna.png);
+}
+
+.cape {
+  background-image: url(images/items/cape.png);
+}
+
+.mirror {
+  background-image: url(images/items/mirror.png);
+}
+
+.boots {
+  background-image: url(images/items/boots.png);
+}
+
+.glove {
+  background-image: url(images/items/glove1.png);
+}
+
+.glove.active-2 {
+  background-image: url(images/items/glove2.png);
+}
+
+.flippers {
+  background-image: url(images/items/flippers.png);
+}
+
+.flute {
+  background-image: url(images/items/flute.png);
+}
+
+.agahnim,
+#bossMapAgahnim {
+  background-image: url(images/dungeons/agahnim0.png);
+}
+
+.agahnim.active {
+  background-image: url(images/dungeons/agahnim1.png);
+}
+
+.boss0,
+#bossMap0 {
+  background-image: url(images/dungeons/boss0.png);
+}
+
+.boss1,
+#bossMap1 {
+  background-image: url(images/dungeons/boss1.png);
+}
+
+.boss2,
+#bossMap2 {
+  background-image: url(images/dungeons/boss2.png);
+}
+
+.boss3,
+#bossMap3 {
+  background-image: url(images/dungeons/boss3.png);
+}
+
+.boss4,
+#bossMap4 {
+  background-image: url(images/dungeons/boss4.png);
+}
+
+.boss5,
+#bossMap5 {
+  background-image: url(images/dungeons/boss5.png);
+}
+
+.boss6,
+#bossMap6 {
+  background-image: url(images/dungeons/boss6.png);
+}
+
+.boss7,
+#bossMap7 {
+  background-image: url(images/dungeons/boss7.png);
+}
+
+.boss8,
+#bossMap8 {
+  background-image: url(images/dungeons/boss8.png);
+}
+
+.boss9,
+#bossMap9 {
+  background-image: url(images/dungeons/boss9.png);
+}
+
+.prize-0 {
+  background-image: url(images/dungeons/prize0.png);
+}
+
+.prize-1 {
+  background-image: url(images/dungeons/prize1.png);
+}
+
+.prize-2 {
+  background-image: url(images/dungeons/prize2.png);
+}
+
+.prize-3 {
+  background-image: url(images/dungeons/prize3.png);
+}
+
+.prize-4 {
+  background-image: url(images/dungeons/prize4.png);
+}
+
+.medallion-0 {
+  background-image: url(images/dungeons/medallion0.png);
+}
+
+.medallion-1 {
+  background-image: url(images/dungeons/medallion1.png);
+}
+
+.medallion-2 {
+  background-image: url(images/dungeons/medallion2.png);
+}
+
+.medallion-3 {
+  background-image: url(images/dungeons/medallion3.png);
+}
+
+.chest-0 {
+  background-image: url(images/dungeons/chest0.png);
+}
+
+.chest-1 {
+  background-image: url(images/dungeons/chest1.png);
+}
+
+.chest-2 {
+  background-image: url(images/dungeons/chest2.png);
+}
+
+.chest-3 {
+  background-image: url(images/dungeons/chest3.png);
+}
+
+.chest-4 {
+  background-image: url(images/dungeons/chest4.png);
+}
+
+.chest-5 {
+  background-image: url(images/dungeons/chest5.png);
+}
+
+.chest-6 {
+  background-image: url(images/dungeons/chest6.png);
+}
+
+.bomb {
+  background-image: url(images/overlay/bomb.png);
+}
+
+.crystal {
+  background-image: url(images/overlay/crystal.png);
+}
+
+.redcrystal {
+  background-image: url(images/overlay/redcrystal.png);
+}
+
+.pendant-0 {
+  background-image: url(images/overlay/pendant0.png);
+}
+
+.pendant-1 {
+  background-image: url(images/overlay/pendant1.png);
+}
+
+.pendant-2 {
+  background-image: url(images/overlay/pendant2.png);
+}
+
+#bossMap0,
+#dungeon0 {
+  left: 93.6%;
+  top: 38.8%;
+}
+
+#bossMap1,
+#dungeon1 {
+  left: 7.6%;
+  top: 78.4%;
+}
+
+#bossMap2,
+#dungeon2 {
+  left: 62.3%;
+  top: 5.5%;
+}
+
+#bossMap3,
+#dungeon3 {
+  left: 93.5%;
+  top: 40.0%;
+}
+
+#bossMap4,
+#dungeon4 {
+  left: 46.5%;
+  top: 91.0%;
+}
+
+#bossMap5,
+#dungeon5 {
+  left: 6.7%;
+  top: 5.4%;
+}
+
+#bossMap6,
+#dungeon6 {
+  left: 12.3%;
+  top: 47.9%;
+}
+
+#bossMap7,
+#dungeon7 {
+  left: 79.1%;
+  top: 85.8%;
+}
+
+#bossMap8,
+#dungeon8 {
+  left: 11.2%;
+  top: 82.9%;
+}
+
+#bossMap9,
+#dungeon9 {
+  left: 93.3%;
+  top: 7.0%;
+}
+
+#bossMapAgahnim,
+#castle {
+  left: 50.2%;
+  top: 52.6%;
+}
+
+#chestMap0 {
+  left: 61.9%;
+  top: 29.6%;
+}
+
+#chestMap1 {
+  left: 47.0%;
+  top: 93.4%;
+}
+
+#chestMap2 {
+  left: 55.0%;
+  top: 67.9%;
+}
+
+#chestMap3 {
+  left: 80.2%;
+  top: 9.3%;
+}
+
+#chestMap4 {
+  left: 85.6%;
+  top: 9.3%;
+}
+
+#chestMap5 {
+  left: 16.3%;
+  top: 57.8%;
+}
+
+#chestMap6 {
+  left: 8.8%;
+  top: 54.2%;
+}
+
+#chestMap7 {
+  left: 10.3%;
+  top: 57.8%;
+}
+
+#chestMap8 {
+  left: 21.2%;
+  top: 47.9%;
+}
+
+#chestMap9 {
+  left: 20.1%;
+  top: 82.6%;
+}
+
+#chestMap10 {
+  left: 3.0%;
+  top: 79.5%;
+}
+
+#chestMap11 {
+  left: 85.3%;
+  top: 14.7%;
+}
+
+#chestMap12 {
+  left: 81.8%;
+  top: 41.4%;
+}
+
+#chestMap13 {
+  left: 56.7%;
+  top: 14.9%;
+}
+
+#chestMap14 {
+  left: 3.4%;
+  top: 41.0%;
+}
+
+#chestMap15 {
+  left: 12.9%;
+  top: 41.0%;
+}
+
+#chestMap16 {
+  left: 59.5%;
+  top: 77.1%;
+}
+
+#chestMap17 {
+  left: 83.2%;
+  top: 17.1%;
+}
+
+#chestMap18 {
+  left: 39.2%;
+  top: 29.3%;
+}
+
+#chestMap19 {
+  left: 65.5%;
+  top: 93.4%;
+}
+
+#chestMap20 {
+  left: 89.9%;
+  top: 76.9%;
+}
+
+#chestMap21 {
+  left: 82.7%;
+  top: 8.6%;
+}
+
+#chestMap22 {
+  left: 82.7%;
+  top: 3.4%;
+}
+
+#chestMap23 {
+  left: 3.7%;
+  top: 46.4%;
+}
+
+#chestMap24 {
+  left: 9.0%;
+  top: 46.8%;
+}
+
+#chestMap25 {
+  left: 81.8%;
+  top: 46.7%;
+}
+
+#chestMap26 {
+  left: 30.5%;
+  top: 68.6%;
+}
+
+#chestMap27 {
+  left: 15.7%;
+  top: 52.1%;
+}
+
+#chestMap28 {
+  left: 29.9%;
+  top: 52.2%;
+}
+
+#chestMap29 {
+  left: 71.1%;
+  top: 69.7%;
+}
+
+#chestMap30 {
+  left: 42.2%;
+  top: 3.0%;
+}
+
+#chestMap31 {
+  left: 22.1%;
+  top: 92.2%;
+}
+
+#chestMap32 {
+  left: 91.5%;
+  top: 17.2%;
+}
+
+#chestMap33 {
+  left: 96.4%;
+  top: 12.1%;
+}
+
+#chestMap34 {
+  left: 41.8%;
+  top: 20.4%;
+}
+
+#chestMap35 {
+  left: 82.1%;
+  top: 32.5%;
+}
+
+#chestMap36 {
+  left: 18.9%;
+  top: 13.0%;
+}
+
+#chestMap37 {
+  left: 30.3%;
+  top: 7.6%;
+}
+
+#chestMap38 {
+  left: 48.8%;
+  top: 14.8%;
+}
+
+#chestMap39 {
+  left: 28.3%;
+  top: 84.1%;
+}
+
+#chestMap40 {
+  left: 56.5%;
+  top: 27.0%;
+}
+
+#chestMap41 {
+  left: 17.7%;
+  top: 77.3%;
+}
+
+#chestMap42 {
+  left: 31.1%;
+  top: 60.1%;
+}
+
+#chestMap43 {
+  left: 15.5%;
+  top: 65.9%;
+}
+
+#chestMap44 {
+  left: 12.5%;
+  top: 8.6%;
+}
+
+#chestMap45 {
+  left: 50.9%;
+  top: 8.5%;
+}
+
+#chestMap46 {
+  left: 80.8%;
+  top: 3.0%;
+}
+
+#chestMap47 {
+  left: 3.6%;
+  top: 69.8%;
+}
+
+#chestMap48 {
+  left: 3.0%;
+  top: 91.0%;
+}
+
+#chestMap49 {
+  left: 72.5%;
+  top: 82.9%;
+}
+
+#chestMap50 {
+  left: 31.7%;
+  top: 15.2%;
+}
+
+#chestMap51 {
+  left: 57.5%;
+  top: 43.5%;
+}
+
+#chestMap52 {
+  left: 5.3%;
+  top: 69.2%;
+}
+
+#chestMap53 {
+  left: 95.8%;
+  top: 17.3%;
+}
+
+#chestMap54 {
+  left: 29.0%;
+  top: 66.2%;
+}
+
+#chestMap55 {
+  left: 53.8%;
+  top: 32.4%;
+}
+
+#chestMap56 {
+  left: 59.9%;
+  top: 41.8%;
+}
+
+#chestMap57 {
+  left: 50.2%;
+  top: 44.1%;
+}
+
+#chestMap58 {
+  left: 46.2%;
+  top: 28.0%;
+}
+
+#chestMap59 {
+  left: 32.1%;
+  top: 58.0%;
+}
+
+#chestMap60 {
+  left: 30.5%;
+  top: 51.8%;
+}
+
+#chestMap61 {
+  left: 46.5%;
+  top: 48.5%;
+}
+
+#chestMap62 {
+  left: 5.0%;
+  top: 3.2%;
+}
+
+#chestMap63 {
+  left: 51.4%;
+  top: 38.2%;
+}
+
+#chestMap64 {
+  left: 90.2%;
+  top: 14.7%;
+}
 
 @keyframes zoomRotate {
   0% {
     transform: scale(1) rotate(0deg);
   }
+
   50% {
     transform: scale(1.15) rotate(180deg);
   }
+
   100% {
     transform: scale(1) rotate(360deg);
   }
@@ -344,7 +1002,8 @@ body {
   position: relative;
   z-index: 5;
   box-shadow:
-    inset 0 0 10px rgba(255, 215, 0, 0.3),       /* inner glow */
+    inset 0 0 10px rgba(255, 215, 0, 0.3),
+    /* inner glow */
     0 0 2px rgba(255, 215, 0, 0.4),
     0 0 4px rgba(255, 215, 0, 0.4),
     0 0 10px rgba(255, 215, 0, 0.4),
@@ -373,5 +1032,151 @@ body {
       0 0 19px rgba(255, 215, 0, 0.56),
       0 0 36px rgba(255, 215, 0, 0.34),
       0 0 55px rgba(255, 215, 0, 0.12);
+  }
+}
+
+
+/* Smaller than --min-width */
+@media (max-width: 472px) {
+  #app {
+    width: var(--min-width);
+    justify-content: left;
+    transform: scale(.85);
+    transform-origin: top left;
+  }
+  
+  #mapswitcher {
+    left: auto;
+    right: 1em;
+  }
+}
+
+/* even smaller */
+@media (max-width: 397px) {
+  #app {
+    width: var(--min-width);
+    justify-content: left;
+    transform: scale(.75);
+    transform-origin: top left;
+  }
+
+  #mapswitcher {
+    left: auto;
+    right: 1em;
+  }
+}
+
+/* a bit smaller */
+@media (max-width: 348px) {
+  #app {
+    width: var(--min-width);
+    justify-content: left;
+    transform: scale(.70);
+    transform-origin: top left;
+  }
+
+  #mapswitcher {
+    left: auto;
+    right: 1em;
+  }
+}
+
+/* smaller still */
+@media (max-width: 322px) {
+  #app {
+    width: var(--min-width);
+    justify-content: left;
+    transform: scale(.65);
+    transform-origin: top left;
+  }
+
+  #mapswitcher {
+    left: auto;
+    right: 1em;
+  }
+}
+
+/* gettiny tiny */
+@media (max-width: 300px) {
+  #app {
+    width: var(--min-width);
+    justify-content: left;
+    transform: scale(.60);
+    transform-origin: top left;
+  }
+
+  #mapswitcher {
+    left: auto;
+    right: 1em;
+  }
+}
+
+/* teenie */
+@media (max-width: 279px) {
+  #app {
+    width: var(--min-width);
+    justify-content: left;
+    transform: scale(.55);
+    transform-origin: top left;
+  }
+
+  #mapswitcher {
+    left: auto;
+    right: 1em;
+  }
+}
+
+/* teenie tiny */
+@media (max-width: 252px) {
+  #app {
+    width: var(--min-width);
+    justify-content: left;
+    transform: scale(.50);
+    transform-origin: top left;
+  }
+
+  #mapswitcher {
+    left: auto;
+    right: 1em;
+  }
+}
+
+/* Between --min-width and 2 * --min-width (464px to 927px) */
+@media (min-width: 477px) and (max-width: 927px) {
+  #app {
+    justify-content: center;
+    /*max-width: var(--min-width); */
+    width: 100%;
+  }
+
+  #mapswitcher {
+    left: calc(50vw + 195px);
+    right: auto;
+  }
+}
+
+/* Between 2 * --min-width and 3 * --min-width (928px to 1391px) */
+@media (min-width: 928px) and (max-width: 1391px) {
+  #app {
+    justify-content: center;
+    max-width: calc(var(--min-width*2));
+  }
+
+  #mapswitcher {
+    left: calc(50vw + 195px);
+    right: auto;
+  }
+}
+
+/* Larger than 3 * --min-width (1392px and up) */
+@media (min-width: 1392px) {
+  #app {
+    justify-content: center;
+    max-width: calc((438px *3) + 6rem);
+  }
+
+  #mapswitcher {
+    left: calc(50vw + 195px);
+    right: auto;
   }
 }

@@ -224,7 +224,7 @@
                 'unavailable';
         }
     }, { // [4]
-        caption: 'Mimic Cave ({mirror} out of TR)(Yellow = {medallion1} OR no {firerod})',
+        caption: 'Mimic Cave ({mirror} out of TR)(Yellow = {medallion0} OR no {firerod})',
         is_opened: false,
         is_available: function() {
             if (!items.moonpearl || !items.hammer || items.glove !== 2 || !items.somaria || !items.mirror) return 'unavailable';
